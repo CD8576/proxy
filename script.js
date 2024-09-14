@@ -3,12 +3,11 @@ document.getElementById('proxyForm').addEventListener('submit', async function(e
     
     const url = document.getElementById('url').value;
     const responseElement = document.getElementById('responseContent');
+    const proxyApiUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
 
     try {
-        const proxyUrl = 'http://localhost:8080/' + encodeURIComponent(url); // Change to your proxy server URL
-        const response = await fetch(proxyUrl);
+        const response = await fetch(proxyApiUrl);
         const responseText = await response.text();
-
         responseElement.textContent = responseText;
     } catch (error) {
         responseElement.textContent = 'Error fetching URL: ' + error;
